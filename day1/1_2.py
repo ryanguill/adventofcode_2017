@@ -21,6 +21,9 @@ for idx, ele in enumerate(input):
 #print(toSum)
 print(sum(toSum))		
 
+#alternate way using a comprehension
+print(sum([int(ele) for idx, ele in enumerate(input) if input[idx] == input[int(idx - len(input) / 2)]]))
+
 #==============================================================================
 end_terminal_block()
 
