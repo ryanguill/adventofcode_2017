@@ -3,7 +3,7 @@ sys.path.append(sys.path[0] + "/..") #because python relative imports are weird.
 
 from lib.utils import read_input
 
-DAY = 1
+DAY = 0
 
 print(read_input(DAY).read())
 
