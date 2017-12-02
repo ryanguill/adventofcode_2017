@@ -1,7 +1,7 @@
 import sys
 sys.path.append(sys.path[0] + "/..") #because python relative imports are weird...
 from lib.utils import read_input, begin_terminal_block, end_terminal_block
-from itertools import permutations
+from itertools import combinations
 
 DAY = 2
 
@@ -13,9 +13,9 @@ for line in read_input(DAY):
 	line = line.strip('\n').split('\t')
 	line = list(map(int, line))
 
-	for a, b in permutations(line, 2):
-		if a % b == 0:
-			total += max((a,b)) // min((a,b))
+	for i in combinations(line, 2):
+		if max(i) % min(i) == 0:
+			total += max(i) // min(i)
 			break
 
 print(total)
