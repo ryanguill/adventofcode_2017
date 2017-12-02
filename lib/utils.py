@@ -1,6 +1,7 @@
 import re
 import math
 from hashlib import sha1, sha256, sha512
+import requests
 
 def read_input(day):
 	"Open this day's input file"
@@ -8,7 +9,13 @@ def read_input(day):
 	try:
 		return open(filename)
 	except FileNotFoundError:
-		print("Cannot find " + filename)
+		print("[Notice] Could not find input file: " + filename)
+		r = requests.get('http://adventofcode.com/2017/day/{}/input'.format(day), cookies=dict(session='53616c7465645f5f8aedf70c9e9f98b5e6518f0fd988d38f7896315c65900434cf316adfce597de58d6da56fb1da3dc7'))
+		with open(filename, 'wb') as fd:
+			for chunk in r.iter_content(chunk_size=128):
+				fd.write(chunk)
+		print("[Notice] input file downloaded.\n\n")
+		return read_input(day)
 
 def test_input():
 	assert read_input(0).read() == 'day0 test input'
@@ -99,7 +106,7 @@ def test_hash_sha1():
 	assert hash_sha1('foo') == '0beec7b5ea3f0fdbc95d0dd47f3c5bc275da8a33'
 
 def hash_sha256(input):
-	hash = sha256()	
+	hash = sha256()
 	hash.update(input.encode())
 	return hash.hexdigest()
 
@@ -107,7 +114,7 @@ def test_hash_sha256():
 	assert hash_sha256('foo') == '2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae'
 
 def hash_sha512(input):
-	hash = sha512()	
+	hash = sha512()
 	hash.update(input.encode())
 	return hash.hexdigest()
 

@@ -9,7 +9,7 @@ begin_terminal_block(DAY)
 #==============================================================================
 
 input = []
-for char in read_input(DAY).read():
+for char in read_input(DAY).read().strip('\n'):
 	input.append(int(char))
 
 toSum = []
@@ -19,7 +19,7 @@ for idx, ele in enumerate(input):
 		toSum.append(ele)
 
 #print(toSum)
-print(sum(toSum))		
+print(sum(toSum))
 
 #alternate way using a comprehension
 print(sum([int(ele) for idx, ele in enumerate(input) if input[idx] == input[int(idx - len(input) / 2)]]))
