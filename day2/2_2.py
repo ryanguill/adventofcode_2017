@@ -10,7 +10,7 @@ begin_terminal_block(DAY)
 
 total = 0
 for line in read_input(DAY):
-	line = line.strip('\n').split('\t')
+	line = line.split()
 	line = list(map(int, line))
 
 	for i in combinations(line, 2):
