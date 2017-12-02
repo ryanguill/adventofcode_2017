@@ -1,6 +1,11 @@
 # adventofcode_2017
 My 2017 advent of code python repo
 
+I am using python because it is a language I do not know - I do not submit this as idiomatic code, or even good code!
+
+My goal is not to golf the code or even get on the leaderboard, just to write functional programs that get the right answer
+and attempt to do so with maintainable solutions, while learning the language and its idioms along the way.
+
 To test:
 `$ pytest`
 
@@ -31,6 +36,7 @@ My vscode workspace settings:
 		"**/.DS_Store": true,
 		"**/*__pycache__": true,
 		"**/.cache": true
-	}
+	},
+	"files.trimTrailingWhitespace": true
 }
 ```

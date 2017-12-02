@@ -1,5 +1,6 @@
 import re
 import math
+from hashlib import sha1, sha256, sha512
 
 def read_input(day):
 	"Open this day's input file"
@@ -88,3 +89,27 @@ def memoize(f):
 			memo[x] = f(x)
 		return memo[x]
 	return helper
+
+def hash_sha1(input):
+	hash = sha1()
+	hash.update(input.encode())
+	return hash.hexdigest()
+
+def test_hash_sha1():
+	assert hash_sha1('foo') == '0beec7b5ea3f0fdbc95d0dd47f3c5bc275da8a33'
+
+def hash_sha256(input):
+	hash = sha256()	
+	hash.update(input.encode())
+	return hash.hexdigest()
+
+def test_hash_sha256():
+	assert hash_sha256('foo') == '2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae'
+
+def hash_sha512(input):
+	hash = sha512()	
+	hash.update(input.encode())
+	return hash.hexdigest()
+
+def test_hash_sha512():
+	assert hash_sha512('foo') == 'f7fbba6e0636f890e56fbbf3283e524c6fa3204ae298382d624741d0dc6638326e282c41be5e4254d8820772c5518a2c5a8c0c7f7eda19594a7eb539453e1ed7'
