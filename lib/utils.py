@@ -4,13 +4,16 @@ from hashlib import sha1, sha256, sha512
 import requests
 
 def read_input(day):
-	"Open this day's input file"
+	"Open this day's input file, set your session identifer first"
+	session_id = '53616c7465645f5f8aedf70c9e9f98b5e6518f0fd988d38f7896315c65900434cf316adfce597de58d6da56fb1da3dc7'
 	filename = './day{}/input.txt'.format(day)
 	try:
 		return open(filename)
 	except FileNotFoundError:
 		print("[Notice] Could not find input file: " + filename)
-		r = requests.get('http://adventofcode.com/2017/day/{}/input'.format(day), cookies=dict(session='53616c7465645f5f8aedf70c9e9f98b5e6518f0fd988d38f7896315c65900434cf316adfce597de58d6da56fb1da3dc7'))
+		r = requests.get('http://adventofcode.com/2017/day/{}/input'.format(day), \
+			cookies=dict(session=session_id))
+		r.raise_for_status()
 		with open(filename, 'wb') as fd:
 			for chunk in r.iter_content(chunk_size=128):
 				fd.write(chunk)
