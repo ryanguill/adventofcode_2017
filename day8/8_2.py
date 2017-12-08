@@ -8,7 +8,7 @@ DAY = 8
 begin_terminal_block(DAY)
 #==============================================================================
 
-registers = defaultdict(lambda: 0)
+
 
 
 def do_op(registers, register, op, value):
@@ -28,20 +28,20 @@ def do_op(registers, register, op, value):
 		return False
 
 max_value_ever = 0
+registers = defaultdict(lambda: 0)
 
 for line in read_input(DAY).readlines():
 	register, op, delta, _, condition_register, comparison, comparison_value = line.split()
-	print(register, op, delta, _, condition_register, comparison, comparison_value)
 
+	#eval version that doesnt need the do_op()
+	#if eval(str(registers[condition_register]) + comparison + str(comparison_value)):
 	if do_op(registers, condition_register, comparison, int(comparison_value)):
 		registers[register] += (int(delta) * (1 if op == 'inc' else -1))
-		if registers[register] > max_value_ever:
-			max_value_ever = registers[register]
-
+		max_value_ever = max(max_value_ever, registers[register])
 
 values = [registers[key] for key in registers]
-print(max(values))
-print(max_value_ever)
+print('max register at the end', max(values))
+print('max ever', max_value_ever)
 
 
 
